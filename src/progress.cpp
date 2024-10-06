@@ -92,10 +92,9 @@ void progress::update(const uint64_t val)
 	show();
 }
 
-
 bool progress::aborted()
 {
-	HANDLE std_in = stdin;
+	HANDLE std_in = 0; // Incorrect emulation - GetStdHandle(STD_INPUT_HANDLE) return non-zero
 	INPUT_RECORD rec;
 	DWORD read_count = 0;
 	while( PeekConsoleInput(std_in, &rec, 1, &read_count) && read_count != 0 ) {
